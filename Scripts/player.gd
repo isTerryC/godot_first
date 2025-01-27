@@ -6,6 +6,8 @@ extends CharacterBody2D
 
 var is_game_over : bool = false
 
+@export var bullet_scene : PackedScene
+
 # Called when the node enters the scene tree for the first time.
 #func _ready() -> void:
 	#velocity = Vector2(50, 0)
@@ -29,3 +31,12 @@ func game_over():
 	animator.play("game_over")
 	await get_tree().create_timer(1).timeout
 	get_tree().reload_current_scene()
+
+
+func _on_fire() -> void:
+	if (velocity != Vector2.ZERO or is_game_over):
+		return
+	
+	var bullet_node = bullet_scene.instantiate()
+	bullet_node.position = position + Vector2(6,6)
+	get_tree().current_scene.add_child(bullet_node)

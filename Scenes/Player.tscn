@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://5dw3t336gi12"]
+[gd_scene load_steps=22 format=3 uid="uid://5dw3t336gi12"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_c5ay8"]
 [ext_resource type="Texture2D" uid="uid://24ohtc7wi25g" path="res://AssetBundle/Sprites/Foxy.png" id="1_yxsbg"]
+[ext_resource type="PackedScene" uid="uid://b0yosh67e0r2k" path="res://Scenes/Bullet.tscn" id="2_v16xu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7o3j8"]
 atlas = ExtResource("1_yxsbg")
@@ -139,6 +140,7 @@ radius = 14.0
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animator")]
 script = ExtResource("1_c5ay8")
 animator = NodePath("AnimatedSprite2D")
+bullet_scene = ExtResource("2_v16xu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l7m27")
@@ -148,3 +150,8 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_tp7ur")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_fire"]
