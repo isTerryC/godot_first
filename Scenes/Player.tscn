@@ -1,7 +1,31 @@
-[gd_scene load_steps=15 format=3 uid="uid://5dw3t336gi12"]
+[gd_scene load_steps=21 format=3 uid="uid://5dw3t336gi12"]
 
-[ext_resource type="Script" path="res://Scenes/player.gd" id="1_c5ay8"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_c5ay8"]
 [ext_resource type="Texture2D" uid="uid://24ohtc7wi25g" path="res://AssetBundle/Sprites/Foxy.png" id="1_yxsbg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7o3j8"]
+atlas = ExtResource("1_yxsbg")
+region = Rect2(0, 256, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjxu5"]
+atlas = ExtResource("1_yxsbg")
+region = Rect2(33, 256, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xqri"]
+atlas = ExtResource("1_yxsbg")
+region = Rect2(66, 256, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o767g"]
+atlas = ExtResource("1_yxsbg")
+region = Rect2(99, 256, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gooh"]
+atlas = ExtResource("1_yxsbg")
+region = Rect2(132, 256, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yy873"]
+atlas = ExtResource("1_yxsbg")
+region = Rect2(165, 256, 33, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gdigy"]
 atlas = ExtResource("1_yxsbg")
@@ -45,6 +69,29 @@ region = Rect2(165, 32, 33, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l7m27"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7o3j8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjxu5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xqri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o767g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gooh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yy873")
+}],
+"loop": true,
+"name": &"game_over",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gdigy")
@@ -95,9 +142,8 @@ animator = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l7m27")
-animation = &"run"
+animation = &"game_over"
 autoplay = "idle"
-frame_progress = 0.238668
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
