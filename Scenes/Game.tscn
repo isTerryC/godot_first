@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://hgr5w0i1qcnr"]
+[gd_scene load_steps=6 format=3 uid="uid://hgr5w0i1qcnr"]
 
 [ext_resource type="Texture2D" uid="uid://bgvjjog88xu86" path="res://AssetBundle/Sprites/ForestBackground.png" id="1_c4upp"]
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_tq505"]
 [ext_resource type="PackedScene" uid="uid://5dw3t336gi12" path="res://Scenes/Player.tscn" id="2_othsh"]
-[ext_resource type="PackedScene" uid="uid://bko0b7a8almgr" path="res://Scenes/slime.tscn" id="3_xbhbd"]
+[ext_resource type="PackedScene" uid="uid://bko0b7a8almgr" path="res://Scenes/Smile.tscn" id="3_xbhbd"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n5b5d"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("spawn_timer")]
 y_sort_enabled = true
+script = ExtResource("1_tq505")
+slime_scene = ExtResource("3_xbhbd")
+spawn_timer = NodePath("Timer")
 
 [node name="Background 1" type="Sprite2D" parent="."]
 position = Vector2(120, 0)
@@ -26,9 +30,6 @@ move_speed = 100.0
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.435, 2.435)
 metadata/_edit_lock_ = true
-
-[node name="Area2D" parent="." instance=ExtResource("3_xbhbd")]
-position = Vector2(125, 101)
 
 [node name="Boundary" type="Node2D" parent="."]
 position = Vector2(103, 0)
@@ -64,3 +65,9 @@ rotation = -1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/StaticBody2D4"]
 position = Vector2(0, 134)
 shape = SubResource("WorldBoundaryShape2D_n5b5d")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_spawn_slime"]

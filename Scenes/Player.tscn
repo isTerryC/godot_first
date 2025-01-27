@@ -139,6 +139,7 @@ radius = 14.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animator")]
 script = ExtResource("1_c5ay8")
+move_speed = 70.0
 animator = NodePath("AnimatedSprite2D")
 bullet_scene = ExtResource("2_v16xu")
 
