@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://5dw3t336gi12"]
+[gd_scene load_steps=15 format=3 uid="uid://5dw3t336gi12"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_c5ay8"]
 [ext_resource type="Texture2D" uid="uid://24ohtc7wi25g" path="res://AssetBundle/Sprites/Foxy.png" id="1_yxsbg"]
@@ -19,6 +19,30 @@ region = Rect2(66, 0, 33, 32)
 atlas = ExtResource("1_yxsbg")
 region = Rect2(99, 0, 33, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qkpk"]
+atlas = ExtResource("1_yxsbg")
+region = Rect2(0, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4e24p"]
+atlas = ExtResource("1_yxsbg")
+region = Rect2(33, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7nrn"]
+atlas = ExtResource("1_yxsbg")
+region = Rect2(66, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6a3iv"]
+atlas = ExtResource("1_yxsbg")
+region = Rect2(99, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc2fi"]
+atlas = ExtResource("1_yxsbg")
+region = Rect2(132, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbtjj"]
+atlas = ExtResource("1_yxsbg")
+region = Rect2(165, 32, 33, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_l7m27"]
 animations = [{
 "frames": [{
@@ -37,14 +61,44 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qkpk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4e24p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7nrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6a3iv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc2fi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbtjj")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_tp7ur"]
+radius = 14.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animator")]
 script = ExtResource("1_c5ay8")
-move_speed = 200.0
+animator = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l7m27")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
-frame_progress = 0.914923
+frame_progress = 0.238668
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_tp7ur")
